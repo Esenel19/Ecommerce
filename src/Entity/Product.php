@@ -32,6 +32,13 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private $categorie;
 
+    #[ORM\OneToMany(mappedBy: 'produit_id', targetEntity: Commentaire::class)]
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -97,6 +104,35 @@ class Product
 
         return $this;
     }
-    
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setProduitId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getProduitId() === $this) {
+                $commentaire->setProduitId(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

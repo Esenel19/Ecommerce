@@ -12,8 +12,9 @@
         {{ form_row(productForm.title) }}
         {{ form_row(productForm.image) }}
         {{ form_row(productForm.price) }}
-
+        {{ form_rest(productForm) }}
         <button type="submit" class="btn">Creation produit</button>
+       
     {{ form_end(productForm) }}
 
 {% endblock %}

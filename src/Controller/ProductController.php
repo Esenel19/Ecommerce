@@ -40,22 +40,27 @@ class ProductController extends AbstractController
             $product->setUser($user);
             $entityManager->persist($product);
             $entityManager->flush();
-            // $product = $form->getData();
+            
 
-            // $this->addFlash("success", "Article bien créé, en attente de validation par un modérateur");
-            // return $this->redirectToRoute("app_product");
+            $this->addFlash("success", "Article bien créé, en attente de validation par un modérateur");
+            return $this->redirectToRoute("app_product");
         }
 
         return $this->render('product/new.html.twig', [
             "productForm" => $form->createView(),
         ]);
 
-
-
     }
 
     
-   
 
+    #[Route('/detail/{id}', name: 'product_show')]
+    public function show(Product $product)
+
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+        ]);
+    }
 
 }

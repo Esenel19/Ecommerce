@@ -41,9 +41,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Product::class)]
     private $user_id;
 
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Commentaire::class)]
+    private $commentaires;
+
+
     public function __construct()
     {
         $this->user_id = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
+        
     }
 
 
@@ -201,5 +207,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUserId() === $this) {
+                $commentaire->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }
