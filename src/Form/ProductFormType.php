@@ -17,8 +17,8 @@ class ProductFormType extends AbstractType
             ->add('title', null,[
                 'label' => 'Title'
             ])
-            ->add('image', FileType::class,[
-                'label' => 'Inserer une image'
+            ->add('image', null,[
+                'label' => 'Inserer le nom de l\'image avec son extension'
             ])
             ->add('price', null,[
                 'label' => 'Prix du produit'
