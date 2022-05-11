@@ -4,10 +4,12 @@ namespace App\Controller;
 
 
 use App\Entity\Product;
+use App\Entity\Commentaire;
 use App\Form\ProductFormType;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,14 +54,16 @@ class ProductController extends AbstractController
 
     }
 
-    
-
     #[Route('/detail/{id}', name: 'product_show')]
-    public function show(Product $product)
+    public function show(Product $product, CommentaireRepository $repo)
     {
+
+        $commentaires = $repo->findBy(["produit_id"=> $product->getId()]);
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'commentaires' => $commentaires
         ]);
     }
+    
 
 }

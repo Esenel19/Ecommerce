@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+	Detail Article
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container mt-3">
+		<h1 class="text-center" style="color:white">Mes Produit</h1>
+		{% for commentaire in commentaires %}
+			{{commentaire.id}}.
+			{{commentaire.contenu}}
+			-
+		{% endfor %}
+	</div>
+
+
+{% endblock %}

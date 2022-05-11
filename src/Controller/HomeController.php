@@ -22,27 +22,6 @@ class HomeController extends AbstractController
             'title' => 'Acceuil'
          ]);
     }
-
-
-    /**
-    * @Route("/mail", name="email")
-    */
-   public function sendMail(MailerInterface $mailer)
-   {
-      // ...
-
-      $mail = (new TemplatedEmail())
-      ->from('expediteur@demo.test')
-      ->to('destinataire@demo.test')
-      ->subject('Mon beau sujet')
-      ->htmlTemplate('mail/template.html.twig')
-   ;
-   
-   $mailer->send($mail);
-
-      // ...
-   }
-
-        
+     
 }
    

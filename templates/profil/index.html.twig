@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+    <p class="text-profile">Email : {{app.user.username}}</p>
+    <p class="text-profile">Prénom : {{app.user.firstname}}</p>
+    <p class="text-profile">Nom : {{app.user.lastname}}</p>
+
+    <div class="text-profile">
+        <a class="a-button-profile" href="{{path('product_user')}}">Vos produits</a>
+    </div>
+
+{% endblock %}

@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-<p>Ajouter un produit</p>
+    <p>Ajouter un produit</p>
 {% endblock %}
 
 {% block body %}
 
-<h1>Ajouter un produit</h1> 
-
-{{ form_start(productForm) }}
+    {{ form_start(productForm) }}
+        <h1>Ajouter un produit</h1> 
         {{ form_row(productForm.title) }}
         {{ form_row(productForm.image) }}
         {{ form_row(productForm.price) }}
         {{ form_rest(productForm) }}
-        <button type="submit" class="btn">Creation produit</button>
-       
+        <button type="submit"class="btn btn-lg btn-primary">Creation produit</button>
+        
     {{ form_end(productForm) }}
 
 {% endblock %}

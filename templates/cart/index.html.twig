@@ -4,16 +4,16 @@
 
 {% block body %}
 
-<h1 class="text-center"> Mon panier </h1>
+<h1 class="text-center" style="color:white"> Mon panier </h1>
 
 {% if items %}
-    <table class="table">
+    <table class="table" style="color:white">
         <thead>
             <tr>
-                <th> Produit</th>
-                <th>Prix</th>
-                <th>Quantite</th>
-                <th>Total</th>
+                <th style="color:white">Produit</th>
+                <th style="color:white">Prix</th>
+                <th style="color:white">Quantite</th>
+                <th style="color:white">Total</th>
                 <th></th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-end">Total :</td>
+                <td colspan="2" class="text-end">Total :</td>
                 <td>
                     {{ total }}$
                     <a href="{{ path('cart_remove_all') }}" class="btn-sm btn-danger">
@@ -60,7 +60,7 @@
 
 {% else %}
 
-    <p>Mon panier est vide</p>
+    <p class="text-panier">Mon panier est vide</p>
 
 {% endif %}
 
