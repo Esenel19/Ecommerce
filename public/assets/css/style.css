@@ -169,9 +169,9 @@ button{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    }
+}
     
-    .a-button-profile:hover, a:active {
+.a-button-profile:hover, .a-button-profile:active {
     background-color: #362a92;
     color: white;
 }

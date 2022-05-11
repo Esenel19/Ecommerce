@@ -24,7 +24,7 @@ class ProductFormType extends AbstractType
                 'label' => 'Prix du produit'
             ])
             ->add('categorie', null,[
-                'label' => 'Ajouter Categorie categorie'
+                'label' => 'Ajouter Categorie'
             ])
         ;
     }
