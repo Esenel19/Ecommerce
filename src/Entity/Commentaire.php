@@ -27,6 +27,12 @@ class Commentaire
     #[ORM\JoinColumn(nullable: false)]
     private $produit_id;
 
+
+    public function __toString(): string
+    {
+      return (string) $this->getEmail();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

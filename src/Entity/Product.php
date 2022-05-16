@@ -35,9 +35,16 @@ class Product
     #[ORM\OneToMany(mappedBy: 'produit_id', targetEntity: Commentaire::class)]
     private $commentaires;
 
+   
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->city.' '.$this->year;
     }
 
     public function getId(): ?int
@@ -134,5 +141,7 @@ class Product
 
         return $this;
     }
+    
 
+    
 }
