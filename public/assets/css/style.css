@@ -9,7 +9,7 @@
 }
 
 body{
-    background-color: #080710;
+    background-color: #1a08a7;
 }
 
 .background{
@@ -180,4 +180,18 @@ button{
     color: white;
     text-align: center;
     margin-top: 4%;;
+}
+
+.p-produit-prix{
+    color:white;
+    position:absolute;
+    margin-left:20%;
+    margin-top:0.25%
+}
+
+.p-produit-title{
+    color:white;
+    position:absolute;
+    margin-left:20%;
+    margin-top:3%;
 }

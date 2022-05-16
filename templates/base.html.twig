@@ -29,19 +29,11 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link active position-relative" href="{{path('app_cart')}}">Panier
-								{#  avec Twig, on use de mot-clef 'set' pour creer des var #}
-								{# nous allons creer une var nbProduits qui contiendra kes nb total de produits #}
-								{# pour recup un attr de session, on use app.session #}
-
 								{% set nbProduits = app.session.get('qt') %}
-
 									{% if nbProduits > 0 %}
 										<span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger"> {{nbProduits}}</span>
-
 								{% endif %}
-
 							</a>
-
 						</li>
 
 						<li class="nav-item">
@@ -55,6 +47,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path("app_profil") }}">Profile</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('new_product')}}">Add Produit</a>
+							</li>
 						{% else %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path("app_register") }}">S'enregistrer</a>
@@ -63,14 +58,6 @@
 								<a class="nav-link" href="{{ path("app_login") }}">Se connecter</a>
 							</li>
 						{% endif %}
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{path('app_forgot_password_request')}}">Reset Mdp</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{path('new_product')}}">Add Produit</a>
-						</li>
 
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_contact')}}">Contacter nous</a>
@@ -85,7 +72,6 @@
 		</nav>
 
 		<div class="container"> </div>
-			
 	</header>
 
 	{% block body %}	
@@ -94,43 +80,47 @@
 
 		<hr class="margin-hr">
 
-	<footer class="bg-white">
-		<div class="container py-5">
-			<div class="row py-4">
-				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
-				<p class="font-italic text-muted">Projet Ecommerce réalisé en Symfony en cours de Framework Web.</p>
-				</div>
-				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-				<h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
-				<ul class="list-unstyled mb-0">
-					<li class="mb-2"><a href="{{path('app_product')}}" class="text-muted">Produits</a></li>
-				</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-				<h6 class="text-uppercase font-weight-bold mb-4">Profile</h6>
-				<ul class="list-unstyled mb-0">
-					<li class="mb-2"><a href="{{ path("app_login") }}" class="text-muted">Login</a></li>
-					<li class="mb-2"><a href="{{ path("app_register") }}" class="text-muted">Register</a></li>
-					<li class="mb-2"><a href="{{ path("app_profil") }}" class="text-muted">Profile</a></li>
-				</ul>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-lg-0">
-				<h6 class="text-uppercase font-weight-bold mb-4">Contacter-nous</h6>
-				<ul class="list-unstyled mb-0">
-					<li class="mb-2"><a class="text-muted" href="{{path('app_contact')}}">N'hésitez pas à nous envoyer un mail pour nous contacter.</a></li>
-				</ul>
+		<footer class="bg-white">
+			<div class="container py-5">
+				<div class="row py-4">
+					<div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+						<p class="font-italic text-muted">Projet Ecommerce réalisé en Symfony en cours de Framework Web.</p>
+					</div>
+					<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+						<h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
+						<ul class="list-unstyled mb-0">
+							<li class="mb-2"><a href="{{path('app_product')}}" class="text-muted">Produits</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+						<h6 class="text-uppercase font-weight-bold mb-4">Profile</h6>
+						<ul class="list-unstyled mb-0">
+							{% if app.user %}
+								<li class="mb-2"><a href="{{ path("app_profil") }}" class="text-muted">Profile</a></li>
+								<li class="mb-2"><a href="{{ path("app_logout") }}" class="text-muted">Déconnexion</a></li>
+							{% else %}
+								<li class="mb-2"><a href="{{ path("app_login") }}" class="text-muted">Login</a></li>
+								<li class="mb-2"><a href="{{ path("app_register") }}" class="text-muted">Register</a></li>
+							{% endif %}
+						</ul>
+					</div>
+					<div class="col-lg-4 col-md-6 mb-lg-0">
+						<h6 class="text-uppercase font-weight-bold mb-4">Contacter-nous</h6>
+						<ul class="list-unstyled mb-0">
+							<li class="mb-2"><a class="text-muted" href="{{path('app_contact')}}">N'hésitez pas à nous envoyer un mail pour nous contacter.</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- Copyrights -->
-		<div class="bg-light py-4">
-		<div class="container text-center">
-		<hr>
-			<p class="text-muted mb-0 py-2">© 2022 All rights reserved.</p>
-		</div>
-		</div>
-  </footer>
+			<!-- Copyrights -->
+			<div class="bg-light py-4">
+				<div class="container text-center">
+					<hr>
+					<p class="text-muted mb-0 py-2">© 2022 All rights reserved.</p>
+				</div>
+			</div>
+		</footer>
 
 	{% block javascripts %}
 		<script src="{{ asset('assets/js/main.js') }}"></script>

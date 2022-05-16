@@ -55,6 +55,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path("app_profil") }}">Profile</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('new_product')}}">Add Produit</a>
+							</li>
 						{% else %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path("app_register") }}">S'enregistrer</a>
@@ -63,14 +66,6 @@
 								<a class="nav-link" href="{{ path("app_login") }}">Se connecter</a>
 							</li>
 						{% endif %}
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{path('app_forgot_password_request')}}">Reset Mdp</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{path('new_product')}}">Add Produit</a>
-						</li>
 
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_contact')}}">Contacter nous</a>
@@ -117,9 +112,13 @@
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 				<h6 class="text-uppercase font-weight-bold mb-4">Profile</h6>
 				<ul class="list-unstyled mb-0">
-					<li class="mb-2"><a href="{{ path("app_login") }}" class="text-muted">Login</a></li>
-					<li class="mb-2"><a href="{{ path("app_register") }}" class="text-muted">Register</a></li>
-					{# <li class="mb-2"><a href="{{ path("app_user") }}" class="text-muted">Profile</a></li> #}
+					{% if app.user %}
+						<li class="mb-2"><a href="{{ path("app_profil") }}" class="text-muted">Profile</a></li>
+						<li class="mb-2"><a href="{{ path("app_logout") }}" class="text-muted">Déconnexion</a></li>
+					{% else %}
+						<li class="mb-2"><a href="{{ path("app_login") }}" class="text-muted">Login</a></li>
+						<li class="mb-2"><a href="{{ path("app_register") }}" class="text-muted">Register</a></li>
+					{% endif %}
 				</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 mb-lg-0">

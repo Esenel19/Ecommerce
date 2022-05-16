@@ -10,12 +10,21 @@
 
 	<div class="container mt-3">
 		<h1 class="text-center" style="color:white">Mes Produit</h1>
-		{% for commentaire in commentaires %}
-			{{commentaire.id}}.
-			{{commentaire.contenu}}
-			-
+		{% for product in productsUser %}
+			{% set present_user = app.user.id %}
+			{% set product_user = product.user.id %}
+
+			{% if present_user == product_user %}
+				<br>
+				<div class="d-flex flex-column">
+					<img src="{{ asset('img/') ~ product.image }}" alt="Image de {{ product.title }}" style="width: 20%;height: auto;">
+					<br>
+					<p class="p-produit-prix">Prix : {{product.price}} $</p>
+					<p class="p-produit-title">Titre Produit : {{product.title}}</p>
+				</div>
+			{% endif %}
+
 		{% endfor %}
 	</div>
-
 
 {% endblock %}

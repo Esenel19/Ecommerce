@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfilController extends AbstractController
@@ -20,14 +21,14 @@ class ProfilController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/productUser/{id.user}', name: 'product_user')]
-    public function productUser(User $user,ProductRepository $repo)
+    #[Route('/profil/productUser', name: 'product_user')]
+    public function productUser(ProductRepository $repo, ?UserInterface $user)
     {
-        $products = $repo->findBy(["user_id"=> $user->getId()]);
-        return $this->render('productUser/show.html.twig', [
-            'products' => $products
+        $productsUser = $repo->findAll();
+        return $this->render('profil/productUser.html.twig', [
+            'productsUser' => $productsUser, 
+            'user' => $user
         ]);
     }
-
 
 }
